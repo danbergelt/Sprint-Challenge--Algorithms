@@ -22,7 +22,7 @@ sum = 0 #O(1)
       sum += 1 #O(1)
 ```
 
-The runtime complexity of this algorithm is O(N Log N). This is because there are two loops, one nested inside of the other, that have dependence on N. However, the inner loop, which depends on approaching N, increases exponentially, so the time to reach N is halved. Thus, instead of O(N^2), the time complexity os O(N Log N)
+The runtime complexity of this algorithm is O(N Log N). This is because there are two loops, one nested inside of the other, that have dependence on N. However, the inner loop, which depends on approaching N, increases exponentially, so the time to reach N is shortened significantly. Instead of O(N^2), the time complexity os O(N Log N)
 
 
 c)
