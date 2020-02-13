@@ -96,8 +96,49 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+
+        # kick off a loop
+        while True:
+          # set the default state to not-sorted, once an item is sorted will flip light back on 
+          self.set_light_off()
+
+          # move right to start, since we initiating at a 0 idx in the list
+          while self.can_move_right():
+            # take the current item and move right for comparison
+            self.swap_item()
+            self.move_right()
+
+            # if the held item is greater than the current observed item, swap them
+            if self.compare_item() == 1:
+              self.swap_item()
+            
+            # take the current item (which had a lesser value than previous item), move left, and swap
+            self.move_left()
+            self.swap_item()
+            # move right, and start the comparison loop over again
+            self.move_right()
+
+          # once we reach the end of the list, move left and make lesser-than comparisons
+          while self.can_move_left():
+            # take the current item and move left for comparison
+            self.swap_item()
+            self.move_left()
+
+            # if the held item is less than the current observed item, swap them
+            if self.compare_item() == -1:
+              self.swap_item()
+              # moving back to the left, set the light on if we are sorting so we can end loop. state will be FALSE on last comparison
+              self.set_light_on()
+
+            # take the current item (which had a greater value), move right, and swap them
+            self.move_right()
+            self.swap_item()
+            # move left, and start the comparison loop over again
+            self.move_left()
+          
+          # break loop
+          if self.light_is_on() == False:
+            return
 
 
 if __name__ == "__main__":
